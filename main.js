@@ -22,8 +22,6 @@ async function handleCheckAlert() {
   const groupData = groupBySO(readData);
   const jsonData = handleAlertDeliveryBySO(groupData);
 
-  console.log(jsonData);
-
   createExcelData(['SGN'], [jsonData]);
 }
 
