@@ -2,7 +2,7 @@ const path = require('path');
 const _ = require('lodash');
 
 const { group } = require('console');
-const { readFileXlsx, mapData, createExcelData, groupByCustomer, groupBySO, handleAlertDeliveryBySO } = require('./utils/controllers');
+const { readFileXlsx, mapData, createExcelData, groupByCustomer, groupBySO, handleDeliveryAlertBySO } = require('./utils/controllers');
 
 const dirFileRevised = path.join(__dirname, './tmp/RAW DATA.xlsx');
 const dirFileAlert = path.join(__dirname, './tmp/SGN.xlsx');
@@ -20,7 +20,7 @@ async function handleCheckAlert() {
   const readData = readFileXlsx(dirFileAlert);
 
   const groupData = groupBySO(readData);
-  const jsonData = handleAlertDeliveryBySO(groupData);
+  const jsonData = handleDeliveryAlertBySO(groupData);
 
   createExcelData(['SGN'], [jsonData]);
 }
