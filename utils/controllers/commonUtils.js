@@ -68,23 +68,23 @@ function handleDeliveryAlertBySO(data) {
   const results = [];
 
   _.forEach(data, deliveries => {
-    handleAlertDeliveryByGroupWeek(results, deliveries);
+    handleDeliveryAlertByGroupWeek(results, deliveries);
   });
 
   return results;
 }
 
-function handleAlertDeliveryByGroupWeek(results, deliveries = []) {
+function handleDeliveryAlertByGroupWeek(results, deliveries = []) {
   if (deliveries.length === 1) {
     results.push({ ...deliveries[0], Alert: ' ' });
     return;
   }
 
   const groupedByMonth = _.groupBy(deliveries, item => item['Market Delivery Date'].substring(0, 7));
-  _.forEach(groupedByMonth, group => checkAlertDeliveryInMonth(results, group));
+  _.forEach(groupedByMonth, group => checkDeliveryAlertInMonth(results, group));
 }
 
-function checkAlertDeliveryInMonth(results, groupedByMonth) {
+function checkDeliveryAlertInMonth(results, groupedByMonth) {
   const groupDate = groupDates(groupedByMonth);
   _.forEach(groupDate, (value, key) => {
     if (value.length === 0) {
